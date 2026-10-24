@@ -1,23 +1,19 @@
 # Heart Disease Prediction Using Machine Learning
 
-## 1. Project Overview
+## Project Overview
 
-This project uses machine learning classification algorithms to predict the presence of heart disease based on patient health attributes.
+This project uses machine learning classification algorithms to predict the presence of heart disease based on patient health information. It includes data preprocessing, model training, evaluation, prediction, and experiment tracking using MLflow.
 
-Two machine learning algorithms, Logistic Regression and Random Forest, are trained and evaluated to compare their performance.
+## Project Objectives
 
-## 2. Objectives
+- Analyze heart disease data.
+- Clean and preprocess the dataset.
+- Train and compare machine learning classification models.
+- Evaluate model performance using multiple metrics.
+- Save trained models for future predictions.
+- Track experiments and manage a registered model using MLflow.
 
-- Load and explore the heart disease dataset.
-- Perform data preprocessing and handle duplicate records.
-- Convert categorical features into numerical values.
-- Scale numerical features.
-- Train Logistic Regression and Random Forest models.
-- Evaluate and compare model performance.
-- Save the trained model and preprocessing files.
-- Predict outcomes for new patient data.
-
-## 3. Technologies Used
+## Technologies Used
 
 - Python
 - Pandas
@@ -26,102 +22,39 @@ Two machine learning algorithms, Logistic Regression and Random Forest, are trai
 - Matplotlib
 - Seaborn
 - Joblib
+- MLflow
 
-## 4. Dataset
+## Dataset
 
-The project uses `heart.csv`, which contains patient health attributes and a target column named `HeartDisease`.
+The dataset contains patient health information and a target variable, `HeartDisease`, indicating the presence or absence of heart disease.
 
-The target variable represents:
-- `0` – No heart disease
-- `1` – Heart disease
+The dataset includes features such as age, sex, chest pain type, resting blood pressure, cholesterol, maximum heart rate, and exercise-related information.
 
-The dataset includes features such as age, sex, chest pain type, resting blood pressure, cholesterol, fasting blood sugar, maximum heart rate, and other health-related attributes.
+**Note:** Ensure that the dataset source and licence permit its use and redistribution before sharing the dataset publicly.
 
-## 5. Project Workflow
+## Project Workflow
 
-### Step 1: Data Loading
-Load the dataset using Pandas.
+1. Load the dataset.
+2. Inspect missing values and duplicate records.
+3. Remove duplicate records.
+4. Encode categorical variables.
+5. Split the data into training and testing sets.
+6. Scale the features using StandardScaler.
+7. Train Logistic Regression and Random Forest models.
+8. Evaluate model performance.
+9. Save model-related files.
+10. Use the trained model to make predictions.
+11. Track experiments and metrics using MLflow.
+12. Register a trained model in the MLflow Model Registry.
 
-### Step 2: Data Preprocessing
-- Check for missing values.
-- Identify and remove duplicate records.
-- Encode categorical variables using one-hot encoding.
-- Separate features and the target variable.
-- Split the dataset into training and testing sets.
-- Apply StandardScaler to scale the features.
+## Machine Learning Models
 
-### Step 3: Model Training
-Train the following classification algorithms:
+Two classification algorithms were trained and evaluated:
+
 - Logistic Regression
 - Random Forest Classifier
 
-### Step 4: Model Evaluation
-Evaluate the models using:
-- Accuracy
-- Precision
-- Recall
-- F1-score
-- Confusion Matrix
-- ROC-AUC Score
-
-### Step 5: Model Comparison
-Compare the performance of both models using evaluation metrics and ROC curves.
-
-### Step 6: Model Saving
-Save the trained Logistic Regression model, scaler, and feature column names using Joblib.
-
-### Step 7: Prediction
-Use the saved model to predict outcomes for new patient data.
-
-## 6. Model Performance
-
-The following results were obtained during model evaluation on the test dataset.
-
-| Evaluation Metric | Logistic Regression | Random Forest |
-|---|---:|---:|
-| Accuracy | 88.59% | 86.96% |
-| Precision | 87.16% | 87.50% |
-| Recall | 93.14% | 89.22% |
-| F1-score | 90.05% | 88.35% |
-| ROC-AUC | 0.9297 | 0.9314 |
-
-Logistic Regression achieved higher accuracy, recall, and F1-score in this evaluation. Random Forest achieved slightly higher precision and ROC-AUC.
-
-These results are specific to this train-test split and do not establish clinical effectiveness.
-
-## 7. Project Structure
-
-```text
-heart_db/
-│
-├── data/
-│   └── heart.csv
-│
-├── models/
-│   ├── best_model.pkl
-│   ├── scaler.pkl
-│   └── feature_columns.pkl
-│
-├── data_loader.py
-├── preprocessing.py
-├── train_models.py
-├── evaluate_models.py
-├── save_model.py
-├── main.py
-├── predict.py
-├── README.md
-└── .gitignore
-
-## MLflow Experiment Tracking
-
-MLflow was used to track and compare machine learning experiments.
-
-### Models Compared
-
-- Logistic Regression
-- Random Forest
-
-### Evaluation Results
+## Model Evaluation Results
 
 | Metric | Logistic Regression | Random Forest |
 |---|---:|---:|
@@ -131,34 +64,98 @@ MLflow was used to track and compare machine learning experiments.
 | F1-score | 90.05% | 88.35% |
 | ROC-AUC | 92.97% | 93.14% |
 
+Logistic Regression achieved higher accuracy, recall, and F1-score in this evaluation. Random Forest achieved slightly higher precision and ROC-AUC.
+
+These results are based on the current train-test split and do not establish clinical reliability.
+
+## MLflow Experiment Tracking
+
+MLflow was used to track and compare machine learning experiments.
+
 ### MLflow Features Practised
 
-- Experiment tracking
-- Logging model parameters and evaluation metrics
-- Logging trained models
-- Comparing model performance
-- Registering a model as `HeartDiseasePrediction`, Version 1
+- Created an experiment named `Heart Disease Prediction`.
+- Logged model parameters.
+- Logged evaluation metrics.
+- Logged trained models.
+- Compared model performance across experiments.
+- Registered the Logistic Regression model as `HeartDiseasePrediction`, Version 1.
 
 ### Run MLflow Experiments
 
-Activate your Python virtual environment, install the required dependencies, and run:
+After installing the required dependencies and activating your Python environment, run:
 
 ```bash
 python train_with_mlflow.py
 ```
 
-To launch the MLflow UI using the project's tracking database:
+To launch the MLflow UI using the local tracking database, run:
 
 ```bash
 python -m mlflow ui --backend-store-uri "sqlite:///C:/Users/akhil/OneDrive/Documents/heart_db/mlflow.db"
 ```
 
-Open `http://127.0.0.1:5000` in your browser.
+Then open http://127.0.0.1:5000 in your browser.
 
+**Note:** The tracking database path above is specific to the original development computer. Update it to match your own project location if you clone this repository.
 
+## Project Structure
 
+```text
+heart-disease-prediction-ml/
+│
+├── data/
+│   └── heart.csv
+│
+├── models/
+│   ├── scaler.pkl
+│   ├── feature_columns.pkl
+│   └── best_model.pkl
+│
+├── data_loader.py
+├── preprocessing.py
+├── train_models.py
+├── evaluate_models.py
+├── save_model.py
+├── main.py
+├── predict.py
+├── train_with_mlflow.py
+├── README.md
+└── .gitignore
+```
 
+*The `models/` files are generated during project execution and may not be included in the repository.*
 
+## How to Run the Project
 
+1. Install Python.
+2. Clone or download this repository.
+3. Create and activate a virtual environment.
+4. Install the required Python libraries.
+5. Ensure the dataset is available at `data/heart.csv`.
+6. Run the main project:
 
+```bash
+python main.py
+```
 
+7. To run MLflow experiment tracking:
+
+```bash
+python train_with_mlflow.py
+```
+
+## Key Learnings
+
+- Data cleaning and preprocessing
+- Categorical feature encoding
+- Feature scaling
+- Classification model training
+- Model evaluation and comparison
+- Saving and loading trained models
+- Making predictions with a trained model
+- Experiment tracking and model registration using MLflow
+
+## Disclaimer
+
+This project is for educational purposes only. Its predictions are not medical advice and should not be used to diagnose or make treatment decisions about heart disease.
