@@ -111,72 +111,54 @@ heart_db/
 ├── predict.py
 ├── README.md
 └── .gitignore
-MLflow Experiment Tracking
+
+## MLflow Experiment Tracking
 
 MLflow was used to track and compare machine learning experiments.
 
-Models Compared
+### Models Compared
 
-Logistic Regression
+- Logistic Regression
+- Random Forest
 
-Random Forest
+### Evaluation Results
 
-Evaluation Results
+| Metric | Logistic Regression | Random Forest |
+|---|---:|---:|
+| Accuracy | 88.59% | 86.96% |
+| Precision | 87.16% | 87.50% |
+| Recall | 93.14% | 89.22% |
+| F1-score | 90.05% | 88.35% |
+| ROC-AUC | 92.97% | 93.14% |
 
-Metric
+### MLflow Features Practised
 
-Logistic Regression
+- Experiment tracking
+- Logging model parameters and evaluation metrics
+- Logging trained models
+- Comparing model performance
+- Registering a model as `HeartDiseasePrediction`, Version 1
 
-Random Forest
-
-Accuracy
-
-88.59%
-
-86.96%
-
-Precision
-
-87.16%
-
-87.50%
-
-Recall
-
-93.14%
-
-89.22%
-
-F1-score
-
-90.05%
-
-88.35%
-
-ROC-AUC
-
-92.97%
-
-93.14%
-
-MLflow Features Practised
-
-Experiment tracking
-
-Logging model parameters and evaluation metrics
-
-Logging trained models
-
-Comparing model performance
-
-Registering a model as HeartDiseasePrediction, Version 1
-
-Run MLflow Experiments
+### Run MLflow Experiments
 
 Activate your Python virtual environment, install the required dependencies, and run:
 
+```bash
 python train_with_mlflow.py
+```
 
 To launch the MLflow UI using the project's tracking database:
 
+```bash
 python -m mlflow ui --backend-store-uri "sqlite:///C:/Users/akhil/OneDrive/Documents/heart_db/mlflow.db"
+```
+
+Open `http://127.0.0.1:5000` in your browser.
+
+
+
+
+
+
+
+
